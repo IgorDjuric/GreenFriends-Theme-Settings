@@ -38,19 +38,6 @@ class ImagesSliderSetup
     public function test() {
         return $imageSize = array($this->width,$this->height);
     }
-    public function enqueueAdminStyleAndScripits()
-    {
-        //Zove media uploader
-        wp_enqueue_media();
-
-        wp_enqueue_style('gf-image-slider-admin-css', plugins_url() . '/gf-image-slider/css/admin.css');
-        wp_enqueue_script('gf-image-slider-admin-js', plugins_url() . '/gf-image-slider/js/admin.js', array('jquery'), '', true);
-    }
-
-    public function enqueueFrontendStyleAndScripits()
-    {
-        wp_enqueue_style('gf-image-slider-front-end-css', plugins_url() . '/gf-image-slider/css/front.css');
-    }
 
     public function optionPageRegister()
     {
