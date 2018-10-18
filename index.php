@@ -20,10 +20,20 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-
+//setup
 require (__DIR__ . "/classes/Setup.php");
+
+//Image slider
 require (__DIR__ . "/classes/ImagesSliderSetup.php");
 require (__DIR__ . "/classes/ImagesSlider.php");
 require (__DIR__ . "/classes/ImagesSliderWidget.php");
-$Setup = new GfThemeSettings\Setup();
+
+//image banners
+require (__DIR__ . "/classes/ImageBannersSetup.php");
+require (__DIR__ . "/classes/ImageBanners.php");
+require (__DIR__ . "/classes/ImageBannersWidget.php");
+
+
+$setup = new GfThemeSettings\Setup();
 $ImageSliderSetup = new GfThemeSettings\ImagesSliderSetup(842,184);
+$imageBanners = new GfThemeSettings\ImageBannersSetup();

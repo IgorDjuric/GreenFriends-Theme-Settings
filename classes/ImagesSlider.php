@@ -1,6 +1,7 @@
 <?php
 
 namespace GfThemeSettings;
+
 class ImagesSlider
 {
     protected $width;

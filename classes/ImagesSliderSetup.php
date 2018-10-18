@@ -26,15 +26,11 @@ class ImagesSliderSetup
 
     private function init()
     {
-        load_plugin_textdomain('gf-image-slider', '', plugins_url() . '/gf-image-slider/languages');
-        add_action(
-            'admin_enqueue_scripts',
-            array($this, 'enqueueAdminStyleAndScripits')
-        );
         add_action('admin_menu', array($this, 'optionPageRegister'));
         add_action('widgets_init', array($this, 'registerWidget'));
         add_action('test',array($this, 'test'));
     }
+
     public function test() {
         return $imageSize = array($this->width,$this->height);
     }
@@ -49,13 +45,13 @@ class ImagesSliderSetup
 
     public function registerOptions()
     {
-        register_setting('gf-image-slider-settings-group', 'gf-image-values');
+        register_setting('gf-image-slider-settings-group', 'gf-image-banners-values');
 
     }
 
     public function optionPage()
     {
-        require(__DIR__ . "/../html/optionPage.phtml");
+        require(__DIR__ . "/../html/optionPageImageSlider.phtml");
     }
 
     public function registerWidget()
