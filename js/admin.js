@@ -1,4 +1,3 @@
-The "Upload" button
 $('.upload-image-button').click(function() {
     var send_attachment_bkp = wp.media.editor.send.attachment;
     var button = $(this);
@@ -26,6 +25,7 @@ $('.remove-image-button').click(function() {
 
 
 $('.upload-image-banners-button').click(function() {
+    // $('.upload-image-banners-button').preventDefault()
     var send_attachment_bkp = wp.media.editor.send.attachment;
     var button = $(this);
     wp.media.editor.send.attachment = function(props, attachment) {

@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?= __('Podešavanja slika za banere') ?></h2>
+    <h2><?= __('Podešavanja slika za slider') ?></h2>
     <br/>
 
     <?php settings_errors();?>
@@ -9,9 +9,9 @@
         <?php do_settings_sections('gf-image-slider-settings-group'); ?>
 
         <div class="admin-module">
-            <?php $this->imageSlider->imageUploadField('image_1') ?>
-            <?php $this->imageSlider->imageUploadField('image_2') ?>
-            <?php $this->imageSlider->imageUploadField('image_3') ?>
+            <?php $this->imageSlider->imageUploadField('image_slider_1') ?>
+            <?php $this->imageSlider->imageUploadField('image_slider_2') ?>
+            <?php $this->imageSlider->imageUploadField('image_slider_3') ?>
         </div>
         <?php submit_button('', 'primary', 'images_submit'); ?>
     </form>

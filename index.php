@@ -23,7 +23,7 @@
 //setup
 require (__DIR__ . "/classes/Setup.php");
 
-//Image slider
+//image slider
 require (__DIR__ . "/classes/ImagesSliderSetup.php");
 require (__DIR__ . "/classes/ImagesSlider.php");
 require (__DIR__ . "/classes/ImagesSliderWidget.php");
@@ -35,5 +35,5 @@ require (__DIR__ . "/classes/ImageBannersWidget.php");
 
 
 $setup = new GfThemeSettings\Setup();
-$ImageSliderSetup = new GfThemeSettings\ImagesSliderSetup(842,184);
+$ImageSliderSetup = new GfThemeSettings\ImagesSliderSetup();
 $imageBanners = new GfThemeSettings\ImageBannersSetup();

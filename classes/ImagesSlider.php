@@ -4,21 +4,11 @@ namespace GfThemeSettings;
 
 class ImagesSlider
 {
-    protected $width;
-    protected $height;
     protected $options;
 
-    /**
-     * ImageSlider constructor.
-     * @param $width
-     * @param $height
-     */
-    public function __construct($width, $height)
+    public function __construct()
     {
-        $this->width = $width;
-        $this->height = $height;
         $this->init();
-
     }
 
     public function init()
@@ -29,29 +19,32 @@ class ImagesSlider
     //Name is name of input inside setting array
     public function imageUploadField($name)
     {
-        $options = get_option('gf-image-values');
+        $options = get_option('gf-image-slider-values');
+        var_dump($options);
         if (!empty($options[$name]['id'])) {
-            $image_attributes = wp_get_attachment_image_src($options[$name]['id'], array($this->width, $this->height));
+            $image_attributes = wp_get_attachment_image_src($options[$name]['id'], 'full');
             $src = $image_attributes[0];
+            $width = $image_attributes[1];
             $value = $options[$name]['id'];
 
         } else {
             $src = '';
+            $width = '';
             $value = '';
         }
         if (!empty($options[$name]['link'])) {
             $link = $options[$name]['link'];
-        } else{
+        } else {
             $link = '';
         }
         echo '
         <div class="upload-image-wrapper">
-            <img src="' . $src . '" width="' . $this->width . 'px" height="' . $this->height . 'px" />
+            <img src="' . $src . '" width="' . $width . '" height="auto" />
             <div>
-                <input type="hidden" name="gf-image-values[' . $name . '][id]" id="gf-image-values[' . $name . '][id]" value="' . $value . '" />
-                 <button type="submit" class="upload-image-button button">Izaberite sliku</button>
+                <input type="hidden" name="gf-image-slider-values[' . $name . '][id]" id="gf-image-slider-values[' . $name . '][id]" value="' . $value . '" />
+                 <button type="button" class="upload-image-button button">Izaberite sliku</button>
                 <button type="submit" class="remove-image-button button">Obrišite sliku</button>
-                <input type="text" name="gf-image-values[' . $name . '][link]" id="gf-image-values[' . $name . '][link]" value="' . $link . '" />
+                <input type="text" name="gf-image-slider-values[' . $name . '][link]" id="gf-image-slider-values[' . $name . '][link]" value="' . $link . '" />
             </div>
         </div>
     ';
@@ -59,16 +52,19 @@ class ImagesSlider
 
     public function imageCarousel()
     {
-        $options = get_option('gf-image-values');
-        $class = 'active';
-        $i = 0;
-        require(__DIR__ . "/../html/carouselHeader.html");
-        foreach ($options as $option) {;
+        $options = get_option('gf-image-slider-values');
+        if (!empty($options)) {
+            $class = 'active';
+            $i = 0;
+            require(__DIR__ . "/../html/carouselHeader.html");
+            foreach ($options as $option) {
+                ;
                 if (empty($option['id'])) {
                     continue;
                 }
-                $image_attributes = wp_get_attachment_image_src($option['id'], array($this->width, $this->height));
+                $image_attributes = wp_get_attachment_image_src($option['id'], 'full');
                 $src = $image_attributes[0];
+                $width = $image_attributes[1];
                 $link = $option['link'];
                 if ($i != 0) {
                     $class = '';
@@ -76,7 +72,8 @@ class ImagesSlider
 
                 require(__DIR__ . "/../html/carouselImage.phtml");
                 $i++;
+            }
+            require(__DIR__ . "/../html/carouselFooter.html");
         }
-        require(__DIR__ . "/../html/carouselFooter.html");
     }
 }
