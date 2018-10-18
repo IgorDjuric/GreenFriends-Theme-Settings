@@ -20,7 +20,6 @@ class ImageBanners
     public function imageUploadField($name)
     {
         $options = get_option('gf-image-banners-values');
-        var_dump($options);
         if (!empty($options[$name]['id'])) {
             $image_attributes = wp_get_attachment_image_src($options[$name]['id'], 'full');
             $src = $image_attributes[0];
